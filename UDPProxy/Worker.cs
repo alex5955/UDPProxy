@@ -25,10 +25,6 @@ namespace UDPProxy
                     byte[] bytes = client.Receive(ref remote);
                     string s = Encoding.UTF8.GetString(bytes);
 
-                    RestConsumer consumer = new RestConsumer();
-
-                    SensorData sd = JsonConvert.DeserializeObject<SensorData>(s);
-
                     StringContent content = new StringContent(s, Encoding.UTF8, "application/json");
 
                     await c.PostAsync("http://localhost:49938/api/Sensor/", content);
